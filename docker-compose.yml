@@ -1,0 +1,42 @@
+version: '3.3'
+
+services:
+  django:
+    build: .
+    env_file:
+      - ./.env
+    stop_signal: SIGINT
+    container_name: django
+    command: python app/cbsvib/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./dump/app:/usr/src/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  db:
+    container_name: ${DB_CONTAINER_NAME}
+    image: postgres:15.0-alpine
+    command:
+      - "postgres"
+      - "-c"
+      - "log_destination=stderr"
+      - "-c"
+      - "logging_collector=on"
+      - "-c"
+      - "log_directory=/var/lib/postgresql/data/pg_log"
+      - "-c"
+      - "work_mem=16MB"
+      - "-c"
+      - "maintenance_work_mem=512MB"
+    env_file:
+      - ./.env
+    volumes:
+      - ./dump/postgres_db/postgres/postgresql-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+    restart: unless-stopped
