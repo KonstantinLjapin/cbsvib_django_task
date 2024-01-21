@@ -1,4 +1,4 @@
-
+# TODO add head , polish 
 Basic Features
 1. Проект и приложение на Django Rest Framework >= 3.12 (Django > =3.2).
 2. Хранение номера телефона пользователя.
@@ -10,9 +10,9 @@ Basic Features
 
 Quick Start
 * Linux(Debian), docker compose (version v2.21.0)
-* Клонируете ветку мастер проекта локально, по образцу .env.dist(ввведены переменные для примера)
+** Клонируете ветку мастер проекта локально, по образцу .env.dist(ввведены переменные для примера)
 создаётся .env и обновляются переменные в нём. 
-* *Проект готов к запуску.
+*** Проект готов к запуску.
 
 $ sudo chmod +x test_start.sh
 $ ./test_start.sh
