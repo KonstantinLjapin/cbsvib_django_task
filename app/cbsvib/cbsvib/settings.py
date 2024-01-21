@@ -1,7 +1,5 @@
 import environ
 import os
-from pathlib import Path
-from dataclasses import dataclass
 
 env = environ.Env(
     # set casting, default value
@@ -68,6 +66,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'cbsvib.urls'
 
+AUTH_USER_MODEL = "app.User"
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -103,7 +103,7 @@ DATABASES = {
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 100
 }
 
 # Password validation
