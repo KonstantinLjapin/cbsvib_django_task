@@ -1,5 +1,5 @@
-# TODO add head , polish 
-**Basic Features**
+
+# **Basic Features**
 1. Проект и приложение на Django Rest Framework >= 3.12 (Django > =3.2).
 2. Хранение номера телефона пользователя.
 3. Email и пароль при создании и авторизации пользователя.
@@ -8,15 +8,15 @@
 6. Модель Мероприятия со следующими полями: title, description, organizations, image, date.
 7. Запуск проекта Docker-compose
 
-**Quick Start**
-# Linux(Debian), docker compose (version v2.21.0)
-## Клонируете ветку мастер проекта локально, по образцу .env.dist(ввведены переменные для примера) создаётся .env и обновляются переменные в нём. 
-## Проект готов к запуску.
+# **Quick Start**
+### Linux(Debian), docker compose (version v2.21.0)
+#### Клонируете ветку мастер проекта локально, по образцу .env.dist(ввведены переменные для примера) создаётся .env и обновляются переменные в нём. 
+#### Проект готов к запуску.
 
 $ Выполнети эти команды для запуска 
 $ sudo chmod +x test_start.sh
 $ ./test_start.sh
 
-#  Open endpoint in browser or Postman.
-## -http://localhost:8000
-## -http://localhost:8003
+###  Open endpoint in browser or Postman.
+#### -http://localhost:8000
+#### -http://localhost:8003
