@@ -66,7 +66,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'cbsvib.urls'
 
-AUTH_USER_MODEL = "app.User"
+#AUTH_USER_MODEL = "app.User"
 
 TEMPLATES = [
     {
