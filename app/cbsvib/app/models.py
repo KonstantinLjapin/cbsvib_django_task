@@ -3,10 +3,10 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 
 
 class Organization(models.Model):
-    title = models.CharField(max_length=255, unique=True)
+    title = models.CharField(max_length=12, unique=True)
     description = models.CharField(max_length=255, unique=True)
     address = models.CharField(max_length=255, unique=True)
-    postcode = models.CharField(max_length=255, unique=True)
+    postcode = models.IntegerField(unique=True)
 
     def __str__(self):
         return "Organization " + str(self.title)

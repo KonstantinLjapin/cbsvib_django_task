@@ -19,4 +19,4 @@
 
 ###  Open endpoint in browser or Postman.
 #### -http://localhost:8000
-#### -http://localhost:8003
+#### -http://localhost:8000/orgcre/ #Создание организации
