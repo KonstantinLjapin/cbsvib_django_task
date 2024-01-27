@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import UserProfile
+from .models import UserProfile, Organization, Event
+
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,3 +11,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = UserProfile.objects.create_user(**validated_data)
         return user
+
+
+class OrganizationSerializer(serializers.ModelSerializer):
+    pass
+
+
+class EventSerializer(serializers.ModelSerializer):
+    pass
+
