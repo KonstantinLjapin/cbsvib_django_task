@@ -15,7 +15,7 @@ class Organization(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=12, unique=True)
     description = models.CharField(max_length=255, unique=True, blank=True)
-    organizations = models.ManyToManyField(Organization, verbose_name="organization_members", blank=True)
+    organizations = models.ManyToManyField(Organization, blank=True)
     image = models.ImageField(blank=True)
     date = models.DateTimeField(blank=True)
 

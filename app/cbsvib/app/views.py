@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import CreateAPIView
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from .models import UserProfile, Organization, Event
-from .serializers import UserProfileSerializer, OrganizationSerializer
+from .serializers import UserProfileSerializer, OrganizationSerializer, EventSerializer
 
 
 class RegisterUserView(APIView):
@@ -56,7 +56,7 @@ class OrganizationCreate(CreateAPIView, IsAuthenticated):
 
 
 class EventCreate(CreateAPIView, IsAuthenticated):
-    serializer_class = Event
+    serializer_class = EventSerializer
     queryset = Event.objects.all()
 
 

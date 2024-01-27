@@ -30,10 +30,9 @@ class OrganizationSerializer(serializers.ModelSerializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
-    # TODO u
     title = serializers.CharField(max_length=12, default='party')
     description = serializers.CharField(max_length=255, default='circus party')
-    organizations = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    organizations = OrganizationSerializer(many=True)
     image = serializers.ImageField()
     date = serializers.DateTimeField(format="%d/%b/%Y")
 
