@@ -16,7 +16,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 class OrganizationSerializer(serializers.ModelSerializer):
     title = serializers.CharField(max_length=12, default='friendly')
-    description = serializers.CharField(max_length=255, default='circle')
+    description = serializers.CharField(max_length=255, default='circus')
     address = serializers.CharField(max_length=255, default='Saint-Petersburg')
     postcode = serializers.IntegerField(max_value=999999, default=125480)
 
@@ -28,15 +28,21 @@ class OrganizationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return Organization.objects.create(**validated_data)
 
-    def update(self, instance, validated_data):
-        instance.title = validated_data.get('title', instance.email)
-        instance.description = validated_data.get('description', instance.email)
-        instance.address = validated_data.get('address', instance.content)
-        instance.postcode = validated_data.get('postcode', instance.created)
-        instance.save()
-        return instance
-
 
 class EventSerializer(serializers.ModelSerializer):
-    pass
+    # TODO u
+    title = serializers.CharField(max_length=12, default='party')
+    description = serializers.CharField(max_length=255, default='circus party')
+    organizations = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    image = serializers.ImageField()
+    date = serializers.DateTimeField(format="%d/%b/%Y")
+
+    class Meta:
+        model = Event
+        permission_classes = [IsAuthenticated]
+        fields = '__all__'
+
+    def create(self, validated_data):
+        return Event.objects.create(**validated_data)
+
 

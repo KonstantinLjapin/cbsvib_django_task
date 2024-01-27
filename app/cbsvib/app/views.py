@@ -55,8 +55,9 @@ class OrganizationCreate(CreateAPIView, IsAuthenticated):
     queryset = Organization.objects.all()
 
 
-class EventCreate(APIView):
-    pass
+class EventCreate(CreateAPIView, IsAuthenticated):
+    serializer_class = Event
+    queryset = Event.objects.all()
 
 
 class EventDetail(APIView):

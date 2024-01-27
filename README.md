@@ -19,4 +19,7 @@
 
 ###  Open endpoint in browser or Postman.
 #### -http://localhost:8000
-#### -http://localhost:8000/orgcre/ #Создание организации
+#### -http://localhost:8000/organization/create/ #Создание организации
+#### -http://localhost:8000/event/create/ #Создание мероприятия
+#### -http://localhost:8000/event/all/ #Вывод мероприятия с информацией о всех.
+#### -http://localhost:8000/event/filter/ #Вывод мероприятий с возможностью фильтрации

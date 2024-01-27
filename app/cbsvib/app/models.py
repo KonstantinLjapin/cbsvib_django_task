@@ -17,7 +17,7 @@ class Event(models.Model):
     description = models.CharField(max_length=255, unique=True, blank=True)
     organizations = models.ManyToManyField(Organization, verbose_name="organization_members", blank=True)
     image = models.ImageField(blank=True)
-    date = models.DateTimeField
+    date = models.DateTimeField(blank=True)
 
     def __str__(self):
         return "Event " + str(self.title)
