@@ -2,6 +2,27 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 
+class Organization(models.Model):
+    title = models.CharField(max_length=255, unique=True)
+    description = models.CharField(max_length=255, unique=True)
+    address = models.CharField(max_length=255, unique=True)
+    postcode = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return "Organization " + str(self.title)
+
+
+class Event(models.Model):
+    title = models.CharField(max_length=12, unique=True)
+    description = models.CharField(max_length=255, unique=True, blank=True)
+    organizations = models.ManyToManyField(Organization, verbose_name="organization_members", blank=True)
+    image = models.ImageField(blank=True)
+    date = models.DateTimeField
+
+    def __str__(self):
+        return "Event " + str(self.title)
+
+
 class UserProfileManager(BaseUserManager):
     """Manager for user profiles"""
 
@@ -32,7 +53,8 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     phone = models.CharField(blank=True, max_length=8, unique=True)
-
+    organization = models.ForeignKey(Organization, blank=True, null=True, related_name='organization',
+                                     on_delete=models.CASCADE)
     objects = UserProfileManager()
 
     USERNAME_FIELD = 'username'
