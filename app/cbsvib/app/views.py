@@ -7,6 +7,7 @@ from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import UserProfile, Organization, Event
 from .serializers import UserProfileSerializer, OrganizationSerializer, EventSerializer
+from .pagination import CustomPagination
 
 
 class RegisterUserView(APIView):
@@ -70,5 +71,7 @@ class EventListFilter(ListAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     filter_backends = [DjangoFilterBackend]
+    pagination_class = CustomPagination
+    ordering_fields = ['date']
 
 
