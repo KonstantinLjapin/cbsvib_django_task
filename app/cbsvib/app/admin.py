@@ -4,14 +4,17 @@ from .models import UserProfile, Organization, Event
 
 @admin.register(UserProfile)
 class CustomUser(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'email', 'username', 'password', 'phone')
+    list_filter = ('id', 'email', 'username', 'password', 'phone')
 
 
 @admin.register(Organization)
 class CustomOrganization(admin.ModelAdmin):
-    pass
+    list_display = ("title", "description", "address", "postcode")
+    list_filter = ("title", "description", "address", "postcode")
 
 
 @admin.register(Event)
-class CustomOrganization(admin.ModelAdmin):
-    pass
+class CustomEvent(admin.ModelAdmin):
+    list_display = ("title", "description", "organizations", "image", "date")
+    list_filter = ("title", "description", "organizations", "image", "date")
