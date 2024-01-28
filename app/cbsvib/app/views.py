@@ -1,9 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import UserProfile, Organization, Event
 from .serializers import UserProfileSerializer, OrganizationSerializer, EventSerializer
 
@@ -60,10 +61,14 @@ class EventCreate(CreateAPIView, IsAuthenticated):
     queryset = Event.objects.all()
 
 
-class EventDetail(APIView):
-    pass
+class EventDetail(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
 
 
-class EventListFilterView(APIView):
-    pass
+class EventListFilter(ListAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    filter_backends = [DjangoFilterBackend]
+
 
