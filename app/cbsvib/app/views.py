@@ -13,6 +13,10 @@ from .pagination import CustomPagination
 class RegisterUserView(APIView):
     parser_classes = [JSONParser, MultiPartParser, FormParser]
 
+    def get(self, request):
+        serializer = UserProfileSerializer()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def post(self, request):
 
         # if email is already in use
@@ -52,22 +56,26 @@ class AllUsersView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class OrganizationCreate(CreateAPIView, IsAuthenticated):
+class OrganizationCreate(CreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = OrganizationSerializer
     queryset = Organization.objects.all()
 
 
-class EventCreate(CreateAPIView, IsAuthenticated):
+class EventCreate(CreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = EventSerializer
     queryset = Event.objects.all()
 
 
 class EventDetail(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
 
 class EventListFilter(ListAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     filter_backends = [DjangoFilterBackend]

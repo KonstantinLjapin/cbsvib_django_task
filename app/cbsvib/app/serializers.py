@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from .models import UserProfile, Organization, Event
 
@@ -6,7 +7,7 @@ from .models import UserProfile, Organization, Event
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ('id', 'email', 'username', 'password', 'avatar')
+        fields = ('id', 'email', 'username', 'password', 'phone')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
